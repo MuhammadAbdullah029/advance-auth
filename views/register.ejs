@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <!-- Remix Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #eef1f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 35px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            padding: 0 10px;
+            margin-bottom: 18px;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        .input-box i {
+            font-size: 18px;
+            color: #555;
+            margin-right: 8px;
+        }
+
+        .input-box input {
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            width: 100%;
+        }
+
+        .input-box:focus-within {
+            border-color: #007bff;
+            box-shadow: 0 0 6px rgba(0, 123, 255, 0.45);
+        }
+
+        button {
+            padding: 13px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.25s;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        p {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+        a {
+            color: #007bff;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Create an Account</h2>
+        <form action="/register" method="POST">
+            <div class="input-box">
+                <i class="ri-user-line"></i>
+                <input type="text" name="name" placeholder="Enter name" required>
+            </div>
+            <div class="input-box">
+                <i class="ri-mail-line"></i>
+                <input type="email" name="email" placeholder="Enter email" required>
+            </div>
+            <div class="input-box">
+                <i class="ri-lock-password-line"></i>
+                <input type="password" name="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login</a></p>
+    </div>
+</body>
+
+</html>

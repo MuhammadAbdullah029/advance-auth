@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+
+    <!-- Remix Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #eef1f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 35px;
+            width: 380px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        h2 {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+
+        .loader {
+            font-size: 45px;
+            color: #007bff;
+            margin: 15px 0;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <i class="ri-refresh-line loader"></i>
+        <h2>Verifying Email...</h2>
+        <p>Please wait while we verify your account.</p>
+        <div id="response"></div>
+    </div>
+
+    <script>
+        fetch("/verify/<%= token %>")
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector(".loader").className = "ri-checkbox-circle-line loader";
+                document.querySelector(".loader").style.animation = "none";
+                document.querySelector(".loader").style.color = "green";
+
+                document.querySelector("h2").innerText = "Verification Successful!";
+                document.querySelector("p").innerText = data.message;
+            })
+            .catch(err => {
+                document.querySelector(".loader").className = "ri-close-circle-line loader";
+                document.querySelector(".loader").style.animation = "none";
+                document.querySelector(".loader").style.color = "red";
+
+                document.querySelector("h2").innerText = "Verification Failed";
+                document.querySelector("p").innerText = "Invalid or expired token";
+            });
+    </script>
+
+</body>
+
+</html>
