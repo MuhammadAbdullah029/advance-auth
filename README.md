@@ -27,5 +27,4 @@ Advance Auth is a secure and modern authentication system built with **Node.js, 
 
 ---
 
-## 📁 Folder Structure (Expected)
 
